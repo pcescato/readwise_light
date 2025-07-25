@@ -10,6 +10,10 @@ from typing import List
 
 app = FastAPI()
 
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
+
 def get_db():
     with Session(engine) as session:
         yield session
