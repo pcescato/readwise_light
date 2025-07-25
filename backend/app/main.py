@@ -44,14 +44,9 @@ async def upload_file(file: UploadFile = File(...), db: Session = Depends(get_db
 
     # Parse the llm_response to get summary and keywords
     try:
-        # Find the start of the JSON block
-        json_start_index = llm_response.find("```json")
-        if json_start_index == -1:
-            raise ValueError("JSON block not found in the LLM response")
-
-        summary = llm_response[:json_start_index].strip()
-        json_str = llm_response[json_start_index + 7:].strip().strip("`")
-        keywords = json.loads(json_str)
+        data = json.loads(llm_response)
+        summary = data.get("summary", "")
+        keywords = data.get("keywords", [])
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error parsing LLM response: {e}")
 
