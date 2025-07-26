@@ -1,15 +1,8 @@
-# syntax=docker/dockerfile:1
+ # Use a lightweight Nginx image
+FROM nginx:alpine
 
-FROM node:20-alpine
+# Copy the static files from the frontend directory to the Nginx html directory
+COPY frontend/ /usr/share/nginx/html
 
-WORKDIR /app
-
-COPY frontend/package.json frontend/package-lock.json* /app/
-
-RUN npm install
-
-COPY frontend /app
-
-EXPOSE 5173
-
-CMD ["npm", "run", "dev"]
+# Expose port 80 for Nginx
+EXPOSE 80

@@ -1,13 +1,48 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyseur de Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Analyseur de Document</h1>
+            <p>Téléchargez un document (.txt, .md, .docx, .rtf, .odt) pour obtenir un résumé et des mots-clés.</p>
+        </header>
+        <main>
+            <form id="upload-form">
+                <div class="file-input-wrapper">
+                    <input type="file" id="file-input" name="file" accept=".txt,.md,.docx,.rtf,.odt" required>
+                    <label for="file-input" id="file-input-label">Choisir un fichier...</label>
+                </div>
+                <button type="submit" id="submit-button">Analyser</button>
+            </form>
+
+            <div id="loader" class="hidden">
+                <div class="spinner"></div>
+                <p>Analyse en cours...</p>
+            </div>
+
+            <div id="error-message" class="hidden"></div>
+
+            <div id="results" class="hidden">
+                <div id="summary-container">
+                    <h2>Résumé</h2>
+                    <p id="summary-content"></p>
+                </div>
+                <div id="keywords-container">
+                    <h2>Mots-clés</h2>
+                    <div id="keywords-list"></div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>Frontend statique pur. Pas de framework.</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
 </html>

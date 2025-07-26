@@ -1,7 +1,6 @@
 
 
 services:
-
   backend:
     build:
       context: .
@@ -29,9 +28,9 @@ services:
       context: .
       dockerfile: Dockerfile.frontend
     ports:
-      - "5173:5173"
+      - "8080:80"
     volumes:
-      - ./frontend:/app
+      - ./frontend:/usr/share/nginx/html
     depends_on:
       - backend
 
